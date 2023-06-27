@@ -29,3 +29,7 @@ exports.home = (req, res) => {
         }
     });
 };
+
+exports.notFound = (req, res) => {
+    res.render('layout', {template: 'notFound'});
+}

@@ -38,7 +38,6 @@ router.get('/profile/:id', profilController.profile);
 router.get('/setting/profile/:id', profilController.profilSetting);
 router.get('/setting/edit-profile/:id', profilController.editProfil);
 router.get('/setting/edit-password/:id', profilController.editPassword);
-router.get('/delete/user/:id', adminController.deleteUser);
 router.post('/login', loginController.loginSubmit);
 router.post('/register', registerController.registerSubmit);
 router.post('/setting/edit-profile/:id', profilController.editProfilSubmit);
@@ -46,7 +45,10 @@ router.post('/setting/edit-password/:id', profilController.editPasswordSubmit);
 router.delete('/delete/articles/:id', profilController.deleteArticle);
 router.delete('/delete/items/:id', profilController.deleteItem);
 router.delete('/delete/users/:id', adminController.deleteUser);
+router.get('/delete/user/:id', adminController.deleteUser);
 
 router.get('/privacyPolicy', privacyPolicyController.privacyPolicy);
+
+router.all('/*', homeController.notFound);
 
 module.exports = router;
