@@ -1,9 +1,9 @@
-import pool from "../config/database.js";
-import {v4 as uuidV4} from 'uuid';
-import xss from 'xss';
+const pool = require("../config/database.js");
+const { v4: uuidV4 } = require('uuid');
+const xss = require("xss");
 
 
-export const listArticles = (req, res) => {
+exports.listArticles = (req, res) => {
     let sql = ` SELECT articles.id,
                        articles.title,
                        users.pseudo,
@@ -25,7 +25,7 @@ export const listArticles = (req, res) => {
     });
 }
 
-export const searchArticles = (req, res) => {
+exports.searchArticles = (req, res) => {
     const search = req.body.search;
     let sql = ` SELECT *
                 FROM articles
@@ -42,7 +42,7 @@ export const searchArticles = (req, res) => {
     });
 }
 
-export const articlesDetails = (req, res) => {
+exports.articlesDetails = (req, res) => {
     const id = req.params.id
     let sql = `
         SELECT articles.id,
@@ -69,7 +69,7 @@ export const articlesDetails = (req, res) => {
     })
 }
 
-export const addComments = (req, res) => {
+exports.addComments = (req, res) => {
     const id = req.params.id
     let sql = `
         SELECT articles.id,
@@ -138,7 +138,7 @@ export const addComments = (req, res) => {
 
 }
 
-export const addArticles = (req, res) => {
+exports.addArticles = (req, res) => {
     let userId = req.session.userId;
 
     if (!userId) return res.redirect('/login')
@@ -160,7 +160,7 @@ export const addArticles = (req, res) => {
     });
 }
 
-export const addArticlesSubmit = (req, res) => {
+exports.addArticlesSubmit = (req, res) => {
     const id = req.session.userId
     const query = `SELECT *
                    FROM category_articles`;
@@ -224,7 +224,7 @@ export const addArticlesSubmit = (req, res) => {
     });
 }
 
-export const editArticle = (req, res) => {
+exports.editArticle = (req, res) => {
     const id = req.params.id;
     const userId = req.session.userId;
 
@@ -262,7 +262,7 @@ export const editArticle = (req, res) => {
         });
     });
 };
-export const editArticleSubmit = (req, res) => {
+exports.editArticleSubmit = (req, res) => {
     const id = req.params.id;
     const userId = req.session.userId;
 

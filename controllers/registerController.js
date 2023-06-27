@@ -1,32 +1,24 @@
-// Import necessary modules
-import pool from "../config/database.js"; // Import for database connection
-import {v4 as uuidV4} from 'uuid';  // npm module for generating UUID
-import xss from 'xss';  // npm module for protection against XSS vulnerabilities
-import bcrypt from "bcrypt"; // npm module for password encryption
+const pool = require("../config/database.js");
+const { v4: uuidV4 } = require('uuid');
+const xss = require('xss');
+const bcrypt = require("bcrypt");
 
+exports.register = (req, res) => {
+    res.render('layout', { template: 'register', error: null });
+};
 
-export const register = (req, res) => {
-    res.render('layout', {template: 'register', error: null});
-}
-
-export const registerSubmit = function (req, res) {
-
-    // Get form data from req.body
-    const {email, pseudo, password, confirmPassword} = req.body;
-
-    // Regular expressions for email (valid format) and pseudo (no special characters)
+exports.registerSubmit = function (req, res) {
+    const { email, pseudo, password, confirmPassword } = req.body;
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$/;
     const inputRegex = /^[a-zA-Z0-9\s]+$/;
 
-    // Protection against XSS (Cross-Site Scripting) vulnerabilities
     const safeEmail = xss(email);
     const safePseudo = xss(pseudo);
     const safePassword = xss(password);
     const safeConfirmPassword = xss(confirmPassword);
 
-    // Validate form data, if the data is invalid, return an error message.
     if (!emailRegex.test(safeEmail)) {
-        return res.render('layout', {template: 'register', error: 'L\'email n\'est pas valide'});
+        return res.render('layout', { template: 'register', error: 'L\'email n\'est pas valide' });
     }
     if (safePseudo.length < 3 || !inputRegex.test(safePseudo)) {
         return res.render('layout', {
@@ -41,22 +33,19 @@ export const registerSubmit = function (req, res) {
         });
     }
     if (safeConfirmPassword !== safePassword) {
-        return res.render('layout', {template: 'register', error: 'Les mots de passe ne correspondent pas'});
+        return res.render('layout', { template: 'register', error: 'Les mots de passe ne correspondent pas' });
     }
 
-    // Encrypt a password using bcrypt
     bcrypt.hash(safePassword, 10, function (error, hash) {
         if (error) {
             console.log(error);
         } else {
-
-            // Create an object newUsers with form data
             const newUsers = {
-                id: uuidV4(), // Generate a unique ID using UUID
+                id: uuidV4(),
                 pseudo: safePseudo,
                 email: safeEmail,
-                password: hash, // Encrypted password
-                role: "Membre" // By default, the role is “Member”
+                password: hash,
+                role: "Membre"
             };
 
             let sql = 'SELECT * FROM users';
@@ -66,34 +55,28 @@ export const registerSubmit = function (req, res) {
                     console.error(error);
                     res.status(500).send('Erreur de base de données');
                 } else {
-
                     for (let i = 0; i < user.length; i++) {
                         if (safePseudo === user[i].pseudo) {
-                            return res.render('layout', {template: 'register', error: "Email ou Pseudo deja utilisé"});
+                            return res.render('layout', { template: 'register', error: "Email ou Pseudo deja utilisé" });
                         } else if (safeEmail === user[i].email) {
-                            return res.render('layout', {template: 'register', error: "Email ou Pseudo deja utilisé"});
+                            return res.render('layout', { template: 'register', error: "Email ou Pseudo deja utilisé" });
                         }
                     }
 
-
-                    // SQL query to insert form data into the users table
                     let query = "INSERT INTO users SET ? ";
 
-                    // Execute the SQL query with data from the newUsers object
                     pool.query(query, [newUsers], function (error) {
                         if (error) {
                             console.error(error);
                             res.status(500).send('Erreur de base de données');
                         } else {
-
-                            // If registration is successful, redirect to the homepage and log in the user.
                             req.session.isUser = true;
-                            req.session.userId = newUsers.id; // Store the user ID in the session
+                            req.session.userId = newUsers.id;
                             res.redirect('/');
                         }
                     });
                 }
-            })
+            });
         }
     });
-}
+};

@@ -1,3 +1,3 @@
-export const privacyPolicy = (req, res) => {
+exports.privacyPolicy = (req, res) => {
     res.render('layout', {template: 'privacyPolicy'});
 }

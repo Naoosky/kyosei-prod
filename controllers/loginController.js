@@ -1,23 +1,23 @@
-import pool from "../config/database.js";
-import bcrypt from "bcrypt";
+const pool = require("../config/database.js");
+const bcrypt = require("bcrypt");
 
-export const login = (req, res) => {
+exports.login = (req, res) => {
     res.render('layout', {template: 'login', error: null});
-}
+};
 
-export const loginSubmit = (req, res) => {
+exports.loginSubmit = (req, res) => {
     // Récupération des données du formulaire dans req.body
     // On utilise les names des inputs comme clefs de req.body
-    const {email, password} = req.body;
+    const { email, password } = req.body;
     let query = "SELECT * FROM users WHERE email = ?";
 
     pool.query(query, [email], function (error, result) {
         if (error) {
-            console.error(error)
-            res.status(500).send('erreur de bdd')
+            console.error(error);
+            res.status(500).send('erreur de bdd');
         } else {
             if (result.length < 1) {
-                res.render('layout', {template: 'login', error: "L'email ou mot de passe n'est pas correct"});
+                res.render('layout', { template: 'login', error: "L'email ou mot de passe n'est pas correct" });
             } else {
                 bcrypt.compare(password, result[0].password, (error, isAllowed) => {
                     if (isAllowed) {
@@ -25,29 +25,27 @@ export const loginSubmit = (req, res) => {
 
                         if (result[0].role === 'Admin') {
                             req.session.isAdmin = true;
-                            res.redirect("/")
+                            res.redirect("/");
                         } else {
                             req.session.isUser = true;
-                            res.redirect("/")
-
+                            res.redirect("/");
                         }
                     } else {
-                        res.render('layout', {template: 'login', error: "L'email ou mot de passe n'est pas correct"});
+                        res.render('layout', { template: 'login', error: "L'email ou mot de passe n'est pas correct" });
                     }
-                })
+                });
             }
         }
     });
-}
+};
 
-export const logOut = (req, res) => {
+exports.logOut = (req, res) => {
     req.session.destroy((error) => {
         if (error) {
-            console.error(error)
-            res.status(500).send('erreur de bdd')
+            console.error(error);
+            res.status(500).send('erreur de bdd');
         } else {
-            res.redirect('/')
+            res.redirect('/');
         }
-
-    })
-}
+    });
+};
