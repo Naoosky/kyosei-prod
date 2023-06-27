@@ -49,6 +49,8 @@ router.get('/delete/user/:id', adminController.deleteUser);
 
 router.get('/privacyPolicy', privacyPolicyController.privacyPolicy);
 
-router.all('/*', homeController.notFound);
+router.all('/*', (req, res) => {
+    res.render('notFound');
+});
 
 module.exports = router;
