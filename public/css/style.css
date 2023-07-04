@@ -744,7 +744,7 @@ table th a {
     text-transform: capitalize;
   }
   .container-form .mobil-hidden .table-forum .table-forum_thead {
-    background-color: #49187e;
+    background-color: rgba(126, 24, 24, 0.89);
     color: white;
     font-weight: bold;
   }
