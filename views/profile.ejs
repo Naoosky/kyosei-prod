@@ -1,12 +1,10 @@
-<h1> <%= user.pseudo %> </h1>
-
 <div class="profil-user">
-    <ul>
+    <ul class="menu-profile">
         <li><a href="/add/articles/<%= user.id %>">ajouter un article</a></li>
         <li><a href="/add/items/<%= user.id %>">ajouter un item</a></li>
         <li><a href="/setting/profile/<%= user.id %>">Paramètre du compte <i class="fa-solid fa-gears"></i></a></li>
     </ul>
-
+    <h1> <%= user.pseudo %> </h1>
     <% if (articles.length > 0) { %>
         <section class="mobil-list">
             <h2>list Articles</h2>

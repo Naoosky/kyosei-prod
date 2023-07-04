@@ -26,8 +26,9 @@
             <label for="image">Image</label>
             <div class="image">
                 <% for(let i = 0; i < images.length; i++) { %>
-                    <label for="image<%= i %>" class="imgCheck"><img src="<%= images[i].url %>"
-                                                                     alt="<%= images[i].description %>"></label>
+                    <label for="image<%= i %>" class="imgCheck">
+                        <img src="<%= images[i].url %>" alt="<%= images[i].description %>">
+                    </label>
                     <input type="radio" id="image<%= i %>" class="hidden" name="image" value="<%= images[i].id %>">
 
                 <% } %>

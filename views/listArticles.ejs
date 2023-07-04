@@ -1,10 +1,9 @@
 <div class="container-form">
-    <h1>Forum</h1>
     <section class="search-form">
         <form method="post" action="/search/articles">
             <label for="search">Chercher une catégorie</label>
             <select name="search" id="search" required>
-                <option value="">Sélectionnez une catégorie</option>
+                <option value="e">Sélectionnez une catégorie</option>
                 <option value="Aide IG">Aide IG</option>
                 <option value="Events">Events</option>
                 <option value="Update">Update</option>
@@ -14,6 +13,7 @@
     </section>
 
     <section class="mobil-list">
+        <h2>Liste des posts</h2>
         <ul>
             <% for( let i = 0; i < articles.length; i++ ) { %>
                 <li class="list-articles">
@@ -45,22 +45,22 @@
     <section class="mobil-hidden">
         <h2>Tableau des posts</h2>
         <table class="table-forum">
-            <thead>
+            <thead class="table-forum_thead">
             <tr>
-                <th>Créateur</th>
+                <th>Catégorie</th>
                 <th>Titre</th>
                 <th>Description</th>
-                <th>Catégorie</th>
+                <th>Créateur</th>
                 <th>Date de création</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="table-forum_tbody">
             <% for( let i = 0; i < articles.length; i++ ) { %>
                 <tr>
-                    <td><%= articles[i].pseudo %></td>
+                    <td><%= articles[i].name %></td>
                     <td><a href="/articles/<%= articles[i].id %>"><%= articles[i].title %></a></td>
                     <td><%= articles[i].description.substring(0, 15) %> ...</td>
-                    <td><%= articles[i].name %></td>
+                    <td><%= articles[i].pseudo %></td>
                     <td><%= articles[i].date.toLocaleDateString() %></td>
                 </tr>
             <% } %>

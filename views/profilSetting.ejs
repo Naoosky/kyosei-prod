@@ -1,11 +1,16 @@
 <section class="profil-setting">
     <h2>Paramètre utilisateur</h2>
     <article>
-        <p>pseudo : <%= user.pseudo %></p>
-        <p>email : <%= user.email %></p>
-        <p>Mot de passe : ******** </p>
-        <a href="/setting/edit-profile/<%= user.id %>">Modifier mon profil</a>
-        <a href="/setting/edit-password/<%= user.id %>">Modifier mon mot de passe</a>
-        <a href="/delete/user/<%= user.id %>"> suprimer compte</a>
+        <ul class="list-infos">
+            <li><p>pseudo : <%= user.pseudo %></p></li>
+            <li><p>email : <%= user.email %></p></li>
+            <li><p>Mot de passe : ******** </p></li>
+        </ul>
+        <ul class="list-edit">
+            <li><a href="/setting/edit-profile/<%= user.id %>">Modifier mon profil</a></li>
+            <li><a href="/setting/edit-password/<%= user.id %>">Modifier mon mot de passe</a></li>
+            <li><a href="/delete/user/<%= user.id %>"> suprimer compte</a></li>
+        </ul>
+
     </article>
 </section>
