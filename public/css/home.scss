@@ -1,18 +1,22 @@
+.titre-h1{
+  display: none;
+}
 .home-welcome {
   width: 100%;
   margin: auto;
+  padding-top: 5%;
 
   h2 {
     width: 100%;
     text-align: center;
     text-transform: uppercase;
-    margin: 5% 0;
+    margin-bottom: 5%;
   }
 
   .home-welcome_article {
     text-align: justify;
 
-    .desktop-text-home {
+    .mobil-hidden-text {
       display: none;
     }
 
@@ -49,6 +53,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .titre-h1{
+    display: block;
+  }
   .home-welcome {
     .home-welcome_article {
       text-align: inherit;
@@ -57,7 +64,7 @@
         display: none;
       }
 
-      .mobil-hidden {
+      .mobil-hidden-text {
         display: block;
         width: 100%;
       }
@@ -81,6 +88,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    .titre-h1{
+      width: 100%;
+      margin-bottom: 2%;
+    }
 
     .home-welcome {
       width: 48%;

@@ -1,9 +1,36 @@
 .profil-user {
-  margin-top: 2%;
-
+  padding-bottom: 2%;
   h2 {
     text-align: center;
     margin: 2% 0;
+  }
+
+  .menu-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2%;
+    padding: 1%;
+    background-color: var(--color-white);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    box-shadow: 0 0 5px var(--color-black);
+    li{
+      margin-top: 5%;
+      &:first-child{
+        margin-top: 0;
+      }
+      a {
+        color: var(--color-black);
+        text-decoration: none;
+        &:hover{
+          color: var(--color-orange);
+        }
+      }
+    }
+
   }
 
   .mobil-hidden {
@@ -23,8 +50,8 @@
     .table-items {
       text-align: center;
 
-      th{
-        &:nth-child(5){
+      th {
+        &:nth-child(5) {
           padding: 0;
         }
       }
@@ -32,12 +59,15 @@
       td {
         padding: 0.5%;
         width: 30%;
-        img{
+
+        img {
           width: 20%;
         }
+
         &:nth-child(1), &:nth-child(3), &:nth-child(5), &:nth-child(6) {
           width: 20%;
         }
+
         &:nth-child(4) {
           width: 20%;
 
@@ -56,15 +86,30 @@
   }
 }
 
+@media screen and (min-width: 767px){
+  .profil-user{
+    .menu-profile {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      li{
+        margin: 0;
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 1200px) {
   .profil-user {
     .mobil-hidden {
       .table-articles {
         td {
           padding: 0.5%;
+
           &:nth-child(3), &:nth-child(4), &:nth-child(1) {
             width: 1%;
           }
+
           &:nth-child(2) {
             width: 2%;
           }
@@ -75,15 +120,19 @@
         td {
           width: 3%;
           padding: 0.5%;
-          img{
+
+          img {
             width: 15%;
           }
-          &:nth-child(2){
+
+          &:nth-child(2) {
             width: 20%;
           }
-          &:nth-child(5){
+
+          &:nth-child(5) {
             width: 10%;
           }
+
           &:nth-child(4) {
             div {
               display: flex;
@@ -100,51 +149,46 @@
     }
   }
 }
+
 /* ************* PAGE ************* */
 /* ************* EditProfil ************* */
 
-.edit-profil-form{
-    margin-top: 2%;
+.profil-setting {
+
+  h2 {
+    width: 100%;
+    text-align: center;
     margin-bottom: 2%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  }
 
-    .edit-profil-form-title{
-        margin-bottom: 2%;
-        font-size: 1.5rem;
-    }
+  article {
 
-    .edit-profil-form-input{
+    .list-infos {
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-        width: 100%;
-
-        .edit-profil-form-input-item{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
         margin-bottom: 2%;
 
-        .edit-profil-form-input-item-label{
-            margin-bottom: 1%;
-        }
+        .list-edit {
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-        .edit-profil-form-input-item-input{
-            width: 100%;
-            padding: 1%;
-            border-radius: 5px;
-            border: 1px solid #000;
-        }
+            .btn-edit {
+            margin-left: 2%;
+            }
         }
     }
 
-    .edit-profil-form-submit{
-        margin-top: 2%;
-        width: 100%;
+    .list-edit {
         display: flex;
         justify-content: center;
+        align-items: center;
+
+        .btn-edit {
+            margin-left: 2%;
+        }
     }
+  }
+
 }

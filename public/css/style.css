@@ -13,10 +13,20 @@
   src: url("../fonts/opendys/OpenDyslexic-Italic.woff") format("woff");
   font-style: italic;
 }
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("../fonts/opendys/OpenDyslexic-Bold-Italic.woff") format("woff");
+  font-style: italic;
+  font-weight: bold;
+}
 /* ************* ROOT ************* */
 :root {
-  --border: 2px solid black;
-  --border-radius: 5px;
+  --border: 1px solid black;
+  --br: 5%;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-purple: #69459a;
+  --color-orange: #f5a623;
 }
 
 /* ************* NORMALIZE ************* */
@@ -342,7 +352,6 @@ body {
 
 main {
   background-color: #FAECD7;
-  padding-bottom: 1rem;
 }
 main h1 {
   text-align: center;
@@ -398,7 +407,6 @@ form input {
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: var(--border);
-  border-radius: 5px;
 }
 form input[type=submit] {
   width: 30%;
@@ -414,12 +422,10 @@ form textarea {
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: var(--border);
-  border-radius: 5px;
 }
 
 table {
   margin: 5% auto auto;
-  border: var(--border);
   border-collapse: collapse;
 }
 table td,
@@ -451,6 +457,11 @@ table th a {
 }
 .header .header-logo img {
   width: 60%;
+}
+.header .header-navigation .mobile-burger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .header .header-navigation ul {
   width: 100%;
@@ -495,6 +506,9 @@ table th a {
 }
 
 @media screen and (min-width: 767px) {
+  .header .header-navigation .mobile-hidden-layout {
+    display: block;
+  }
   .header .header-logo {
     text-align: center;
   }
@@ -516,20 +530,25 @@ table th a {
 }
 /* ************* PAGE ************* */
 /* ************* HOME ************* */
+.titre-h1 {
+  display: none;
+}
+
 .home-welcome {
   width: 100%;
   margin: auto;
+  padding-top: 5%;
 }
 .home-welcome h2 {
   width: 100%;
   text-align: center;
   text-transform: uppercase;
-  margin: 5% 0;
+  margin-bottom: 5%;
 }
 .home-welcome .home-welcome_article {
   text-align: justify;
 }
-.home-welcome .home-welcome_article .desktop-text-home {
+.home-welcome .home-welcome_article .mobil-hidden-text {
   display: none;
 }
 .home-welcome .home-welcome_article p {
@@ -559,13 +578,16 @@ table th a {
 }
 
 @media screen and (min-width: 768px) {
+  .titre-h1 {
+    display: block;
+  }
   .home-welcome .home-welcome_article {
     text-align: inherit;
   }
   .home-welcome .home-welcome_article .mobil-text-home {
     display: none;
   }
-  .home-welcome .home-welcome_article .mobil-hidden {
+  .home-welcome .home-welcome_article .mobil-hidden-text {
     display: block;
     width: 100%;
   }
@@ -582,6 +604,10 @@ table th a {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+  .container-home .titre-h1 {
+    width: 100%;
+    margin-bottom: 2%;
   }
   .container-home .home-welcome {
     width: 48%;
@@ -627,8 +653,7 @@ table th a {
 /* ************* PAGE ************* */
 /* ************* FORUM ************* */
 .search-form {
-  padding: 0;
-  margin-top: 5%;
+  padding: 5% 0 0;
 }
 .search-form form {
   padding: 0;
@@ -674,20 +699,28 @@ table th a {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-  .container-form h1 {
-    width: 100%;
+    background-image: url("/img/fond-forum.webp");
+    background-size: cover;
+    background-position: 0 10%;
+    padding: 2% 0;
   }
   .container-form .search-form {
-    width: 100%;
-    margin-top: 2%;
+    width: 30%;
+    margin: auto;
+    padding-top: 2%;
+    background-color: rgba(0, 0, 0, 0.24);
+  }
+  .container-form .search-form label {
+    color: white;
+    font-weight: bold;
+    padding-bottom: 1%;
   }
   .container-form .search-form form {
     margin: auto;
   }
   .container-form .search-form form input[type=submit] {
-    width: 30%;
-    margin-top: 2%;
+    width: 40%;
+    margin-top: 2.5%;
   }
   .container-form .mobil-list {
     display: none;
@@ -697,20 +730,45 @@ table th a {
     width: 100%;
   }
   .container-form .mobil-hidden h2 {
+    color: black;
+    font-size: 1.8rem;
+    font-weight: bold;
     text-align: center;
     text-transform: uppercase;
+    margin-top: 1%;
   }
   .container-form .mobil-hidden .table-forum {
     width: 95%;
-    margin: auto;
-    margin-top: 2%;
+    margin: 2% auto auto;
     text-align: center;
     text-transform: capitalize;
   }
+  .container-form .mobil-hidden .table-forum .table-forum_thead {
+    background-color: #49187e;
+    color: white;
+    font-weight: bold;
+  }
+  .container-form .mobil-hidden .table-forum .table-forum_tbody {
+    font-weight: bold;
+  }
+  .container-form .mobil-hidden .table-forum .table-forum_tbody tr {
+    background-color: rgba(141, 81, 81, 0.77);
+  }
+  .container-form .mobil-hidden .table-forum .table-forum_tbody td:nth-child(2) a {
+    color: #e8ba3c;
+    text-decoration: underline;
+  }
 }
 @media screen and (min-width: 1200px) {
+  .container-form .search-form {
+    padding-top: 1%;
+  }
   .mobil-hidden {
     width: 70%;
+  }
+  .mobil-hidden h2 {
+    margin-top: 1%;
+    margin-bottom: 1%;
   }
 }
 /* ************* PAGE ************* */
@@ -1011,11 +1069,37 @@ table th a {
 /* ************* PAGE ************* */
 /* ************* PROFILE ************* */
 .profil-user {
-  margin-top: 2%;
+  padding-bottom: 2%;
 }
 .profil-user h2 {
   text-align: center;
   margin: 2% 0;
+}
+.profil-user .menu-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2%;
+  padding: 1%;
+  background-color: var(--color-white);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  box-shadow: 0 0 5px var(--color-black);
+}
+.profil-user .menu-profile li {
+  margin-top: 5%;
+}
+.profil-user .menu-profile li:first-child {
+  margin-top: 0;
+}
+.profil-user .menu-profile li a {
+  color: var(--color-black);
+  text-decoration: none;
+}
+.profil-user .menu-profile li a:hover {
+  color: var(--color-orange);
 }
 .profil-user .mobil-hidden .table-articles {
   text-align: center;
@@ -1055,6 +1139,16 @@ table th a {
   width: 15%;
 }
 
+@media screen and (min-width: 767px) {
+  .profil-user .menu-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .profil-user .menu-profile li {
+    margin: 0;
+  }
+}
 @media screen and (min-width: 1200px) {
   .profil-user .mobil-hidden .table-articles td {
     padding: 0.5%;
@@ -1089,44 +1183,32 @@ table th a {
 }
 /* ************* PAGE ************* */
 /* ************* EditProfil ************* */
-.edit-profil-form {
-  margin-top: 2%;
-  margin-bottom: 2%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.edit-profil-form .edit-profil-form-title {
-  margin-bottom: 2%;
-  font-size: 1.5rem;
-}
-.edit-profil-form .edit-profil-form-input {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.profil-setting h2 {
   width: 100%;
-}
-.edit-profil-form .edit-profil-form-input .edit-profil-form-input-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  text-align: center;
   margin-bottom: 2%;
 }
-.edit-profil-form .edit-profil-form-input .edit-profil-form-input-item .edit-profil-form-input-item-label {
-  margin-bottom: 1%;
+.profil-setting article .list-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2%;
 }
-.edit-profil-form .edit-profil-form-input .edit-profil-form-input-item .edit-profil-form-input-item-input {
-  width: 100%;
-  padding: 1%;
-  border-radius: 5px;
-  border: 1px solid #000;
-}
-.edit-profil-form .edit-profil-form-submit {
-  margin-top: 2%;
-  width: 100%;
+.profil-setting article .list-infos .list-edit {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+.profil-setting article .list-infos .list-edit .btn-edit {
+  margin-left: 2%;
+}
+.profil-setting article .list-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profil-setting article .list-edit .btn-edit {
+  margin-left: 2%;
 }
 
 /* ************* PAGE ************* */

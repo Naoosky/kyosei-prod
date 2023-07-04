@@ -1,7 +1,6 @@
 
 .search-form {
-  padding: 0;
-  margin-top: 5%;
+  padding: 5% 0 0;
 
   form {
     padding: 0;
@@ -58,21 +57,29 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    background-image: url('/img/fond-forum.webp');
+    background-size: cover;
+    background-position: 0 10%;
+    padding: 2% 0;
 
-    h1 {
-      width: 100%;
-    }
 
     .search-form {
-      width: 100%;
-      margin-top: 2%;
+      width: 30%;
+      margin: auto;
+      padding-top: 2%;
+      background-color: rgba(0, 0, 0, 0.24);
+      label{
+        color: white;
+        font-weight: bold;
+        padding-bottom: 1%;
+      }
 
       form {
         margin: auto;
 
         input[type='submit'] {
-          width: 30%;
-          margin-top: 2%;
+          width: 40%;
+          margin-top: 2.5%;
         }
       }
     }
@@ -86,16 +93,37 @@
       width: 100%;
 
       h2 {
+        color: black;
+        font-size: 1.8rem;
+        font-weight: bold;
         text-align: center;
         text-transform: uppercase;
+        margin-top: 1%;
       }
-
       .table-forum {
         width: 95%;
-        margin: auto;
-        margin-top: 2%;
+        margin: 2% auto auto;
         text-align: center;
         text-transform: capitalize;
+
+        .table-forum_thead{
+          background-color: #49187e;
+          color: white;
+          font-weight: bold;
+        }
+        .table-forum_tbody{
+          font-weight: bold;
+          tr{
+            background-color: rgba(141, 81, 81, 0.77);
+          }
+          td:nth-child(2){
+            a{
+              color: #e8ba3c;
+              text-decoration: underline;
+            }
+          }
+
+        }
       }
     }
   }
@@ -103,9 +131,20 @@
 }
 
 @media screen and (min-width: 1200px) {
+  .container-form{
+    .search-form{
+      padding-top: 1%;
+    }
+
+  }
   .mobil-hidden {
+    h2{
+      margin-top: 1%;
+      margin-bottom: 1%;
+    }
     width: 70%;
   }
+
 }
 
 /* ************* PAGE ************* */
