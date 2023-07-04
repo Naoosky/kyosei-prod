@@ -26,7 +26,7 @@
   --color-white: #FFFFFF;
   --color-black: #000000;
   --color-purple: #69459a;
-  --color-orange: #f5a623;
+  --color-orange: rgba(255, 91, 2, 0.64);
 }
 
 /* ************* NORMALIZE ************* */
@@ -755,7 +755,7 @@ table th a {
     background-color: rgba(141, 81, 81, 0.77);
   }
   .container-form .mobil-hidden .table-forum .table-forum_tbody td:nth-child(2) a {
-    color: #e8ba3c;
+    color: rgba(255, 255, 255, 0.6); 
     text-decoration: underline;
   }
 }
